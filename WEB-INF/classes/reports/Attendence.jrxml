@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DispatchReport_TownWise" pageWidth="2000" pageHeight="2000" columnWidth="1960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Error" uuid="8c43dbfd-751f-4c97-b228-ca3eb79bf9fd">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="HR.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Crosstab_CH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CG" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CT" mode="Opaque" backcolor="#005FB3">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="2bc08840-6403-4a58-b622-2879aa781f68">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OPAL.xml"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT cfg_tbl_product.num_inner_in_master_pack AS no_of_inner,
+    inv_tbl_issue.dte_createddate,
+    inv_tbl_issue.ser_issue_id,
+    inv_tbl_issue.dte_date,
+    inv_tbl_issue.txt_issue_code,
+    inv_tbl_issue.txt_invoice_status,
+    inv_tbl_issue.txt_gate_pass_no,
+    inv_tbl_issue.txt_station,
+        CASE
+            WHEN inv_tbl_issue.bln_is_paid = true THEN 'Paid'::text
+            ELSE 'To Pay'::text
+        END AS txt_paid,
+    cfg_tbl_customer.txt_customer_code,
+    cfg_tbl_customer.txt_customer_name,
+    cfg_tbl_customer.txt_gst_number,
+    cfg_tbl_customer.txt_billing_address,
+    sls_tbl_sale_order.dte_date AS so_date,
+    sls_tbl_sale_order.dte_due_date,
+    sls_tbl_sale_order.txt_sale_order_no,
+    sls_tbl_sale_order.txt_description,
+    sls_tbl_sale_order.ser_sale_order_id,
+        CASE
+            WHEN sls_tbl_sale_order.bln_is_approved = true THEN 'Approved'::text
+            ELSE 'Pending'::text
+        END AS status,
+    sls_tbl_sale_order.txt_dealer,
+    sls_tbl_sale_order.txt_shipping_address1,
+    inv_tbl_issue_detail.num_quantity,
+    inv_tbl_issue_detail.txt_type,
+    inv_tbl_issue_detail.num_qty_in_bags,
+    inv_tbl_issue_detail.num_quantity * cfg_tbl_product.num_units_in_master_pack AS no_of_units,
+    inv_tbl_issue_detail.num_quantity * cfg_tbl_product.num_product_weight AS toonage,
+    cfg_tbl_product.num_pieces_in_master_pack * inv_tbl_issue_detail.num_quantity AS pcs,
+    cfg_tbl_product.txt_product_code,
+    cfg_tbl_product.txt_product_name,
+    cfg_tbl_product.txt_master_pack,
+    cfg_tbl_product.txt_price_unit,
+    cfg_tbl_product.num_units_in_master_pack,
+    cfg_tbl_product.num_pieces_in_master_pack,
+    cfg_tbl_product_quality.txt_product_quality_name,
+    cfg_tbl_product_design.txt_product_design_name,
+    cfg_tbl_product_category.txt_product_category_name,
+    inv_tbl_issue.txt_vehicle_no,
+    inv_tbl_issue.txt_status,
+    inv_tbl_issue.txt_bilty_no,
+    inv_tbl_issue.txt_driver_name,
+    inv_tbl_issue.txt_driver_id,
+    inv_tbl_issue.txt_driver_mobile,
+    inv_tbl_issue.num_freight,
+    cfg_tbl_supplier.txt_supplier_name,
+    cfg_tbl_city.txt_city_name,
+    cfg_tbl_customer.txt_phone_no
+   FROM inv_tbl_issue
+     LEFT JOIN inv_tbl_issue_detail ON inv_tbl_issue_detail.ser_issue_id = inv_tbl_issue.ser_issue_id
+     LEFT JOIN sls_tbl_sale_order ON sls_tbl_sale_order.ser_sale_order_id = inv_tbl_issue.ser_sale_order_id
+     LEFT JOIN sls_tbl_so_detail ON sls_tbl_so_detail.ser_so_detail_id = inv_tbl_issue_detail.ser_so_detail_id
+     LEFT JOIN cfg_tbl_product ON cfg_tbl_product.ser_product_id = inv_tbl_issue_detail.ser_product_id
+     LEFT JOIN cfg_tbl_product_category ON cfg_tbl_product_category.ser_product_category_id = cfg_tbl_product.ser_product_category_id
+     LEFT JOIN cfg_tbl_customer ON cfg_tbl_customer.ser_customer_id = sls_tbl_sale_order.ser_customer_id
+     LEFT JOIN cfg_tbl_brand ON cfg_tbl_product.ser_brand_id = cfg_tbl_brand.ser_brand_id
+     LEFT JOIN cfg_tbl_product_design ON inv_tbl_issue_detail.ser_product_design_id = cfg_tbl_product_design.ser_product_design_id
+     LEFT JOIN cfg_tbl_product_quality ON cfg_tbl_product_quality.ser_product_quality_id = inv_tbl_issue_detail.ser_product_quality_id
+     LEFT JOIN cfg_tbl_supplier ON cfg_tbl_supplier.ser_supplier_id = inv_tbl_issue.ser_supplier_id
+     LEFT JOIN cfg_tbl_city ON cfg_tbl_city.ser_city_id = cfg_tbl_customer.ser_city_id
+
+     
+     where inv_tbl_issue.dte_date >='2019-01-01']]>
+		</queryString>
+		<field name="txt_product_design_name" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="txt_product_design_name"/>
+		</field>
+		<field name="txt_product_quality_name" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="txt_product_quality_name"/>
+		</field>
+		<field name="txt_product_category_name" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="txt_product_category_name"/>
+		</field>
+		<field name="txt_product_name" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="txt_product_name"/>
+		</field>
+		<field name="txt_product_code" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="txt_product_code"/>
+		</field>
+		<field name="txt_city_name" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="txt_city_name"/>
+		</field>
+		<field name="num_quantity" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.label" value="num_quantity"/>
+		</field>
+		<group name="txt_product_category_name">
+			<groupExpression><![CDATA[$F{txt_product_category_name}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString>
+		<![CDATA[select ser_attendance_info_id,dte_date,
+cast( hr_tbl_attendance_info.tim_incoming_time as time) , cast( hr_tbl_attendance_info.tim_outgoing_time as time) ,  
+hr_tbl_attendance_info.num_rate, ROUND(cast(hr_tbl_attendance_info.num_working_hours as numeric),2) as num_working_hours,
+ hr_tbl_employee.txt_employee_name ,hr_tbl_employee.ser_employee_id , txt_employee_code ,
+ txt_designation_name, txt_designation_code, hr_tbl_designation.ser_designation_id
+ ,(hr_tbl_attendance_info.num_rate* hr_tbl_attendance_info.num_working_hours) as total_amount
+from hr_tbl_attendance_info 
+left join hr_tbl_employee on hr_tbl_employee.ser_employee_id = hr_tbl_attendance_info.ser_employee_id
+left join hr_tbl_designation on hr_tbl_designation.ser_designation_id = hr_tbl_employee.ser_designation_id]]>
+	</queryString>
+	<field name="ser_attendance_info_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ser_attendance_info_id"/>
+	</field>
+	<field name="dte_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="dte_date"/>
+	</field>
+	<field name="tim_incoming_time" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.label" value="tim_incoming_time"/>
+	</field>
+	<field name="tim_outgoing_time" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.label" value="tim_outgoing_time"/>
+	</field>
+	<field name="num_rate" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="num_rate"/>
+	</field>
+	<field name="num_working_hours" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="num_working_hours"/>
+	</field>
+	<field name="txt_employee_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="txt_employee_name"/>
+	</field>
+	<field name="ser_employee_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ser_employee_id"/>
+	</field>
+	<field name="txt_employee_code" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="txt_employee_code"/>
+	</field>
+	<field name="txt_designation_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="txt_designation_name"/>
+	</field>
+	<field name="txt_designation_code" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="txt_designation_code"/>
+	</field>
+	<field name="ser_designation_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ser_designation_id"/>
+	</field>
+	<field name="total_amount" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="total_amount"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="10" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="ContainerBottom" x="0" y="0" width="1960" height="39" uuid="f1a22fb8-cfa1-40f0-bf92-dda982c34dba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Attendence REPROT (DATE WISE) ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="190" splitType="Stretch">
+			<crosstab>
+				<reportElement x="0" y="10" width="1960" height="180" uuid="a8a40ed8-0646-41cd-ad98-d4fdc80c4ac7">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.crosstab.style.header" value="Crosstab_CH"/>
+					<property name="com.jaspersoft.studio.crosstab.style.group" value="Crosstab_CG"/>
+					<property name="com.jaspersoft.studio.crosstab.style.total" value="Crosstab_CT"/>
+					<property name="com.jaspersoft.studio.crosstab.style.detail" value="Crosstab_CD"/>
+				</reportElement>
+				<rowGroup name="txt_employee_name" width="80" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{txt_employee_name}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents mode="Opaque" style="Crosstab_CH">
+							<textField>
+								<reportElement x="0" y="0" width="80" height="40" uuid="3700862f-8bbc-41b2-8235-013874e92162"/>
+								<box leftPadding="3"/>
+								<textElement>
+									<font fontName="Verdana" size="10" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{txt_employee_name}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents mode="Opaque" style="Crosstab_CT">
+							<staticText>
+								<reportElement x="0" y="0" width="80" height="40" forecolor="#FFFFFF" uuid="3fbe4fb2-522e-432d-bb05-55f404901bbb"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total txt_employee_name]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="dte_date" height="20" totalPosition="End">
+					<bucket class="java.sql.Date">
+						<bucketExpression><![CDATA[$F{dte_date}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents mode="Opaque" style="Crosstab_CH">
+							<textField pattern="MMM d, yyyy">
+								<reportElement x="0" y="0" width="70" height="20" uuid="21eb71c7-bb61-4194-b932-52fbcb62c68b"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" size="10" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dte_date}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents mode="Opaque" style="Crosstab_CT">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="20" forecolor="#FFFFFF" uuid="fa410abd-4ac7-4bb2-91f7-37ee1c89bf2e"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total dte_date]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="tim_incoming_time_MEASURE" class="java.sql.Time">
+					<measureExpression><![CDATA[$F{tim_incoming_time}]]></measureExpression>
+				</measure>
+				<measure name="tim_outgoing_time_MEASURE" class="java.sql.Time">
+					<measureExpression><![CDATA[$F{tim_outgoing_time}]]></measureExpression>
+				</measure>
+				<measure name="num_working_hours_MEASURE" class="java.lang.Double" calculation="Sum">
+					<measureExpression><![CDATA[$F{num_working_hours}]]></measureExpression>
+				</measure>
+				<crosstabCell width="70" height="40">
+					<cellContents mode="Opaque" style="Crosstab_CD">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+						<textField pattern="h:mm a" isBlankWhenNull="true">
+							<reportElement x="0" y="0" width="40" height="20" uuid="be982139-a80b-4a8a-8269-79216edae34b"/>
+							<textElement textAlignment="Center">
+								<font fontName="Verdana" size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{tim_incoming_time_MEASURE}]]></textFieldExpression>
+						</textField>
+						<textField pattern="h:mm a" isBlankWhenNull="true">
+							<reportElement x="0" y="20" width="40" height="20" uuid="111c05e1-84b1-4dc1-845b-06155666d910"/>
+							<textElement textAlignment="Center">
+								<font fontName="Verdana" size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{tim_outgoing_time_MEASURE}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0.######;(#,##0.######-)" isBlankWhenNull="true">
+							<reportElement x="40" y="1" width="30" height="39" uuid="b352610c-504d-4dda-a692-a90b52da8c92"/>
+							<box leftPadding="1">
+								<leftPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Verdana" size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{num_working_hours_MEASURE}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="60" height="40" columnTotalGroup="dte_date">
+					<cellContents mode="Opaque" style="Crosstab_CT">
+						<textField>
+							<reportElement x="0" y="0" width="60" height="40" forecolor="#FFFFFF" uuid="f3b5056a-bfd2-4ce2-927e-360198797749"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Verdana" size="10" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{num_working_hours_MEASURE}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="70" height="40" rowTotalGroup="txt_employee_name">
+					<cellContents mode="Opaque" style="Crosstab_CT">
+						<textField>
+							<reportElement x="0" y="0" width="70" height="40" forecolor="#FFFFFF" uuid="3d822f0f-2b20-49d8-8ebf-f5167e717af7"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Verdana" size="10" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{num_working_hours_MEASURE}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="60" height="40" rowTotalGroup="txt_employee_name" columnTotalGroup="dte_date">
+					<cellContents mode="Opaque" style="Crosstab_CT">
+						<textField>
+							<reportElement x="0" y="0" width="60" height="40" forecolor="#FFFFFF" uuid="8291c4b4-0466-4213-9cc7-96724b1feef3"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Verdana" size="10" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{num_working_hours_MEASURE}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

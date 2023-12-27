@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="cit">
+		<class>com.pf.admin.dal.entities.Account</class>
+		<class>com.pf.admin.dal.entities.AccountAuthentication</class>
+		<class>com.pf.admin.dal.entities.Baa</class>
+		<class>com.pf.admin.dal.entities.CfgTblMenu</class>
+		<class>com.pf.admin.dal.entities.CfgTblPasswordHistory</class>
+		<class>com.pf.admin.dal.entities.CfgTblPasswordPolicy</class>
+		<class>com.pf.admin.dal.entities.CfgTblRole</class>
+		<class>com.pf.admin.dal.entities.CfgTblSubMenu</class>
+		<class>com.pf.admin.dal.entities.CfgTblSubMenuRole</class>
+		<class>com.pf.admin.dal.entities.CfgTblUser</class>
+		<class>com.pf.admin.dal.entities.CfgTblUserRole</class>
+		<class>com.pf.admin.dal.entities.Ehr</class>
+		<class>com.pf.admin.dal.entities.EhrType</class>
+		<class>com.pf.admin.dal.entities.Patient</class>
+		<class>com.pf.admin.dal.entities.Provider</class>
+		<class>com.pf.admin.dal.entities.ProviderAccount</class>
+		<class>com.pf.admin.dal.entities.ProviderAuthentication</class>
+		<class>com.pf.admin.dal.entities.ServiceProvider</class>
+		<class>com.pf.sa.dal.entities.CfgTblBrand</class>
+		<class>com.pf.sa.dal.entities.CfgTblCity</class>
+		<class>com.pf.sa.dal.entities.CfgTblCountry</class>
+		<class>com.pf.sa.dal.entities.CfgTblCurrency</class>
+		<class>com.pf.sa.dal.entities.CfgTblCustomer</class>
+		<class>com.pf.sa.dal.entities.CfgTblCustomerCategory</class>
+		<class>com.pf.sa.dal.entities.CfgTblDistributionChannel</class>
+		<class>com.pf.sa.dal.entities.CfgTblDivision</class>
+		<class>com.pf.sa.dal.entities.CfgTblDocumentType</class>
+		<class>com.pf.sa.dal.entities.CfgTblIncoTerm</class>
+		<class>com.pf.sa.dal.entities.CfgTblPaymentTerm</class>
+		<class>com.pf.sa.dal.entities.CfgTblProcess</class>
+		<class>com.pf.sa.dal.entities.CfgTblProduct</class>
+		<class>com.pf.sa.dal.entities.CfgTblProductCategory</class>
+		<class>com.pf.sa.dal.entities.CfgTblProductComponent</class>
+		<class>com.pf.sa.dal.entities.CfgTblProductDesign</class>
+		<class>com.pf.sa.dal.entities.CfgTblProductQuality</class>
+		<class>com.pf.sa.dal.entities.CfgTblSalesOrganization</class>
+		<class>com.pf.sa.dal.entities.CfgTblSupplier</class>
+		<class>com.pf.sa.dal.entities.CfgTblSupplierCategory</class>
+		<class>com.pf.sa.dal.entities.CfgTblUom</class>
+		<class>com.pf.sa.dal.entities.HrTblDepartment</class>
+		<class>com.pf.sa.dal.entities.HrTblDesignation</class>
+		<class>com.pf.sa.dal.entities.HrTblEmployee</class>
+		<class>com.pf.sa.dal.entities.HrTblEmployeeType</class>
+		<class>com.pf.sa.dal.entities.HrTblJob</class>
+		<class>com.pf.sa.dal.entities.HrTblShiftInfo</class>
+		<class>com.pf.sa.dal.entities.SlsTblCustomerFeedback</class>
+		<class>com.pf.sa.dal.entities.SlsTblSaleItemSchedule</class>
+		<class>com.pf.sa.dal.entities.SlsTblSaleOrder</class>
+		<class>com.pf.sa.dal.entities.SlsTblSoDetail</class>
+		
+		
+			
+	</persistence-unit>
+
+</persistence>

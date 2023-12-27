@@ -1,0 +1,89 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/data/jpa
+        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.springframework.org/schema/task
+            http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+
+
+	<context:component-scan base-package="com.pf"
+		annotation-config="true" use-default-filters="true" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<!-- Enables the Spring MVC @Controller programming model -->
+
+	<mvc:annotation-driven />
+	<!-- To serve static resources under the web root using default servlet -->
+	<mvc:default-servlet-handler />
+
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper">
+					<bean class="com.pf.HibernateAwareObjectMapper" />
+				</property>
+			</bean>
+			
+			
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<task:annotation-driven />
+
+	<context:annotation-config />
+
+		<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	     <property name="dataSource" ref="dataSource" />
+	     <property name="packagesToScan" value="com.pf" />
+	     <property name="jpaVendorAdapter">
+	        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+	     </property>
+	     <property name="jpaProperties">
+	       <props>
+	           <prop key="hibernate.hbm2ddl.auto">update</prop>
+	           <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+	           <prop key="hibernate.max_fetch_depth">0</prop>
+	         </props>
+	     </property>
+	  </bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="org.postgresql.Driver" />
+			 <property name="url" value="jdbc:postgresql://localhost:5432/icl3" /> 
+			
+		 <!-- <property name="url" value="jdbc:postgresql://192.168.0.239:5432/icl2" />  -->
+			<property name="username" value="postgres" />
+			<property name="password" value="abc" />
+			
+	</bean>	
+	
+	
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/jsp/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+</beans>

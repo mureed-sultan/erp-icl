@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app="tree">
+<head>
+    <link rel="stylesheet" href="/resources/css/tree.css"/>
+</head>
+<body>
+-------------------------------
+<div ng-controller="TreeController as tc"  ng-init="">
+    <ul class="tree">
+        <node-tree children="tc.tree"></node-tree>
+    </ul>
+</div>
+
+<script src="/resources/js/angular.min.js"></script>
+<script src="/resources/src/Controllers/TreeController.js"></script>
+<script src="/resources/src/Services/TreeService.js"></script>
+<script src="/resources/src/Config/URLConfig.js"></script>
+<script src="/resources/src/Directives/TreeDirectives.js"></script>
+</body>
+</html>
