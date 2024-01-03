@@ -44,18 +44,11 @@
 		<div class="box">
 
 
+			<%@include file="navigationPane.jsp"%>
 			<div class="row row-offcanvas row-offcanvas-left">
 
-				<!-- sidebar -->
-				<%@include file="navigationPane.jsp"%>
-
-				<!-- /sidebar -->
-
-				<!-- main right col -->
 				<%@include file="topMenu.jsp"%>
-				<!-- /top nav -->
 
-				<!-- page content -->
 				<div class="right_col" role="main">
 					<div class="">
 
@@ -71,11 +64,8 @@
 							</div>
 
 						</div>
-						<!-- /page content -->
 
-						<!-- /padding -->
 					</div>
-					<!-- /main -->
 
 				</div>
 			</div>

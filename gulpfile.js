@@ -73,7 +73,7 @@ gulp.task('serve', async function(done) {
   await waitForApacheTomcat();
 
   browserSync.init({
-    proxy: 'http://localhost:8080/ICL/login',
+    proxy: 'http://localhost:8080/erp-icl/login',
     port: 3000,
     notify: false,
     reloadDebounce: 500
@@ -83,6 +83,9 @@ gulp.task('serve', async function(done) {
     reload();
   }); 
   gulp.watch('resources/**/*.js').on('change', function() {
+    reload();
+  });  
+  gulp.watch('resources/**/*.css').on('change', function() {
     reload();
   });
 

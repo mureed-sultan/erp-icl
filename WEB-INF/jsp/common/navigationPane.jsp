@@ -5,10 +5,27 @@
 		body, .navbar-fixed-top, .navbar-fixed-bottom {
 		  padding-right: 0 !important;
 		}
+		.flex-center{
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			justify-content: start;
+			gap: 5rem;
+
+		}
+		.flex-center img{
+			width: 50px;
+		}
+		.flex-center ul{
+			background-color: #A1C034;
+			padding: 20px 0px;
+			border-radius: 0px 50px 50px 0;
+		}
   </style>
   <!-- Sidebar -->
       <!--  <div ng-controller="mainController" class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar"> -->
-       <div    class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
+		  <div    class="column col-sm-2 col-xs-1 sidebar-offcanvas flex-center" id="sidebar">
+		   <img src="https://datasphereglobal.co/wp-content/uploads/2023/06/JAKLOGO2.png" alt="">
               
               	<ul class="nav">
           			<li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
@@ -65,20 +82,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<!-- <script type="text/javascript">
-        $(document).ready(function () {
-			
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-                $(this).toggleClass('active');
-                
-                //alert(document.getElementById("table-resp").classList);
-                
-                if ( document.getElementById("table-resp").classList.contains('tc-02') )
-                	document.getElementById("table-resp").classList.remove('tc-02');
-                else
-                	document.getElementById("table-resp").classList.add('tc-02');
-                         });
-        });
-    </script> -->
             
