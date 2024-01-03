@@ -1,355 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <title>Rounded Progress Bar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background: radial-gradient(circle at center, #064fc5, #020c3c 100%) center/cover no-repeat;
-        }
-
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            /* Ensure pointer events do not interfere with background canvas */
-        }
-
-        #globeCanvas {
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: auto;
-            width: 50%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        #loginform {
-            position: absolute;
-            top: 50%;
-            left: 0%;
-            transform: translate(0%, -50%);
-            text-align: center;
-            color: white;
-            font-size: 18px;
-            width: 45%;
-        }
-
-        #loginform input {
-            width: 80%;
-            padding: 10px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            font-size: 16px;
-            border-radius: 15px 5px 15px 5px;
-            outline: none;
-            transition-duration: .3s;
-        }    
-         #loginform input:focus, #loginform input:hover {
-            border-radius: 0px 0 0px 0;
-
-        }
-
-        #loginform a {
-            color: white;
-            text-decoration: none;
-        }
-
-        #loginBtn {
+        .progress{
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+            background: none;
+            margin: 0 auto;
+            box-shadow: none;
             position: relative;
-            overflow: hidden;
-            background-color: transparent;
-            color: white;
-            border: none;
-            border-radius: 15px 0 15px 0;
-            padding: 10px 30px;
-            border: 1px solid white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
         }
-        
-        #loginBtn::before {
+        .progress:after{
             content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
             width: 100%;
             height: 100%;
-            background: white;
-            color: black;
-            transition: left 0.3s ease;
-        }
-        
-        #loginBtn:hover::before {
-            left: 0;
-            z-index: -1;
-        }
-        
-        #loginBtn:hover {
-            background-color: transparent;
-            color: black;
-            
-        }
-        
-
-        .move-button {
+            border-radius: 50%;
+            border: 12px solid #fff;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
         }
-        p.input-title{
-            margin: 0;
-            text-align: start;
-            margin-left: 50px;
+        .progress > span{
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            z-index: 1;
         }
-        .forgot-password, .create-account{
-            margin-top: 1rem;
-            margin-bottom: 1rem;
+        .progress .progress-left{
+            left: 0;
+        }
+        .progress .progress-bar{
+            width: 100%;
+            height: 100%;
+            background: none;
+            border-width: 12px;
+            border-style: solid;
+            position: absolute;
+            top: 0;
+        }
+        .progress .progress-left .progress-bar{
+            left: 100%;
+            border-top-right-radius: 80px;
+            border-bottom-right-radius: 80px;
+            border-left: 0;
+            -webkit-transform-origin: center left;
+            transform-origin: center left;
+        }
+        .progress .progress-right{
+            right: 0;
+        }
+        .progress .progress-right .progress-bar{
+            left: -100%;
+            border-top-left-radius: 80px;
+            border-bottom-left-radius: 80px;
+            border-right: 0;
+            -webkit-transform-origin: center right;
+            transform-origin: center right;
+            animation: loading-1 1.8s linear forwards;
+        }
+        .progress .progress-value{
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            background: #ffffff;
+            font-size: 24px;
+            color: #d10b4f;
+            line-height: 135px;
+            text-align: center;
+            position: absolute;
+            top: 5%;
+            left: 5%;
+        }
+        .progress.blue .progress-bar{
+            border-color: #d10b4f;
+        }
+        .progress.blue .progress-left .progress-bar{
+            animation: loading-2 1.5s linear forwards 1.8s;
+        }
+        
+        
+        
+        
+        
+        
+        @keyframes loading-1{
+            0%{
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100%{
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+        }
+        @keyframes loading-2{
+            0%{
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100%{
+                -webkit-transform: rotate(144deg);
+                transform: rotate(144deg);
+            }
+        }
+        @keyframes loading-3{
+            0%{
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100%{
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+            }
+        }
+        @keyframes loading-4{
+            0%{
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100%{
+                -webkit-transform: rotate(36deg);
+                transform: rotate(36deg);
+            }
+        }
+        @keyframes loading-5{
+            0%{
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100%{
+                -webkit-transform: rotate(126deg);
+                transform: rotate(126deg);
+            }
+        }
+        @media only screen and (max-width: 990px){
+            .progress{ margin-bottom: 20px; }
         }
         
     </style>
 </head>
-
 <body>
 
-    <canvas id="background"></canvas>
-    <div id="loginform">
-        <h2>Login</h2>
-        <form name='loginForm' action="" method='POST' class="login-form">
-            <div class="input-container">
-                <p class="input-title">UserName</p>
-                <i class="fas fa-user"></i>
-                <input type="text" id="username" placeholder="Username">
-            </div>
-            <div class="input-container">
-                <p class="input-title">Password</p>
 
-                <i class="fas fa-lock"></i>
-                <input type="password" id="password" placeholder="Password">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="progress blue">
+                    <span class="progress-left">
+                      <span class="progress-bar"></span>
+                    </span>
+                    <span class="progress-right">
+                        <span class="progress-bar"></span>
+                    </span>
+                    <div class="progress-value">30%</div>
+                </div>
             </div>
-            <div class="forgot-password">
-                <a href="#">Forgot Password?</a>
-            </div>
-            <button id="loginBtn" onclick="validateLogin()">Login</button>
-            <div class="create-account">
-                <a href="#">Create New Account</a>
-            </div>
-        </form>
     </div>
-    <div id="globeCanvas"></div>
 
-    <script type="module">
-        import * as THREE from 'https://cdn.skypack.dev/three@0.136.0';
-        import { OrbitControls } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js';
-
-        let scene, camera, renderer;
-        let controls;
-        const group = new THREE.Group();
-
-        init();
-        animate();
-
-        function init() {
-            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 4000);
-            camera.position.z = 800;
-
-            scene = new THREE.Scene();
-            scene.background = null; // Remove background
-            scene.add(group);
-            let w = window.innerHeight;
-            console.log(w)
-            const helper = new THREE.Mesh(new THREE.IcosahedronGeometry(410, 6), new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true }));
-            group.add(helper);
-
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setPixelRatio(window.devicePixelRatio);
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.outputEncoding = THREE.sRGBEncoding;
-
-            const globeCanvas = document.getElementById('globeCanvas');
-            globeCanvas.appendChild(renderer.domElement);
-
-            controls = new OrbitControls(camera, renderer.domElement);
-            controls.minDistance = 800;
-            controls.maxDistance = 3000;
-            controls.enableDamping = true;
-            controls.enablePan = false;
-
-            window.addEventListener('resize', onWindowResize);
-        }
-
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        function animate() {
-            controls.update();
-            requestAnimationFrame(animate);
-            render();
-        }
-
-        function render() {
-            group.rotation.y += 0.001;
-            renderer.render(scene, camera);
-        }
-    </script>
-
-
-    <script>
-        const canvas = document.getElementById('background');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const stars = [];
-
-        for (let i = 0; i < 100; i++) {
-            const angle = Math.random() * Math.PI * 2; // Random angle for movement
-            const speed = Math.random() * 1 + 0.5; // Varying speeds between 0.5 and 1.5
-            stars.push({
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                radius: Math.random() * 3 + 1, // Varying sizes between 1 and 4
-                blink: Math.random() < 0.05, // Adjust this probability for slower blinking
-                angle,
-                speed,
-            });
-        }
-
-        function drawStars() {
-            for (const star of stars) {
-                // Blinking logic
-                if (Math.random() < 0.002) { // Adjust this probability for slower blinking
-                    star.blink = !star.blink;
-                }
-
-                if (star.blink) {
-                    ctx.beginPath();
-                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = 'white';
-                    ctx.fill();
-                }
-            }
-        }
-
-        function updatePositions() {
-            for (const star of stars) {
-                // Update positions based on angle and speed
-                star.x += Math.cos(star.angle) * star.speed;
-                star.y += Math.sin(star.angle) * star.speed;
-
-                // Wrap around the canvas
-                if (star.x > canvas.width + star.radius) {
-                    star.x = -star.radius;
-                }
-                if (star.x < -star.radius) {
-                    star.x = canvas.width + star.radius;
-                }
-                if (star.y > canvas.height + star.radius) {
-                    star.y = -star.radius;
-                }
-                if (star.y < -star.radius) {
-                    star.y = canvas.height + star.radius;
-                }
-            }
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Update positions
-            updatePositions();
-
-            // Draw stars
-            drawStars();
-
-            requestAnimationFrame(draw);
-        }
-
-        draw();
-
-
-
-        const loginButton = document.getElementById('loginBtn');
-        const loginForm = document.getElementById('loginform');
-        const usernameInput = document.getElementById('username');
-        const passwordInput = document.getElementById('password');
-
-        loginButton.addEventListener('mouseenter', () => {
-            if (usernameInput.value === '' || passwordInput.value === '') {
-                moveButtonRandomly();
-            }
-        });
-
-        loginButton.addEventListener('mouseleave', () => {
-            if (usernameInput.value === '' && passwordInput.value === '') {
-                moveButtonRandomly();
-            }
-        });
-
-        usernameInput.addEventListener('input', () => {
-            moveButtonToOriginalPosition();
-        });
-
-        passwordInput.addEventListener('input', () => {
-            moveButtonToOriginalPosition();
-        });
-        function moveButtonRandomly() {
-
-            const canvasWidth = window.innerWidth;
-            const canvasHeight = window.innerHeight;
-
-            const maxX = canvasWidth - loginButton.clientWidth;
-            const maxY = canvasHeight - loginButton.clientHeight;
-
-            const moveDistanceX = Math.max(0, Math.min(Math.random() * maxX, maxX));
-            const moveDistanceY = Math.max(0, Math.min(Math.random() * maxY, maxY));
-
-            // Ensure the button stays within the left and top boundaries
-            const leftBoundary = 0;
-            const topBoundary = 0;
-
-            const finalX = Math.min(leftBoundary + moveDistanceX, maxX) / 2;
-            const finalY = Math.min(topBoundary + moveDistanceY, maxY) / 2;
-
-            console.log(finalX, finalY);
-            console.log(canvasWidth, canvasHeight);
-
-            loginButton.style.transform = `translate(${finalX}px, ${finalY}px)`;
-        }
-
-
-
-        function moveButtonToOriginalPosition() {
-            loginButton.style.transform = 'translate(0, 0)';
-        }
-
-        function validateLogin() {
-            // Add your login validation logic here
-            // For demonstration, let's just alert if the fields are empty
-            if (usernameInput.value === '' || passwordInput.value === '') {
-                alert('Username or password cannot be empty.');
-            } else {
-                // Add your actual login logic here
-                alert('Login successful!');
-            }
-        }
-    </script>
 </body>
-
 </html>

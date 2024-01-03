@@ -25,6 +25,43 @@
 
 <title>Customer Portal</title>
 
+<style>
+	.grid-4{
+		display: grid;
+		grid-template-columns: repeat(4,1fr);
+	}
+        .progress-round {
+            position: relative;
+            width: 100px; /* Adjust the width of the progress bar */
+            height: 100px; /* Adjust the height of the progress bar */
+            border-radius: 50%;
+            background-color: #ccc; /* Background color of the progress bar */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #333; /* Text color */
+        }
+
+        .progress-bar {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            clip: rect(0, 50px, 100px, 0);
+            background-color: #3498db; /* Blue color for the progress */
+        }
+
+        .dot {
+            position: absolute;
+            width: 20px; /* Adjust the size of the dot */
+            height: 20px; /* Adjust the size of the dot */
+            background-color: #3498db; /* Blue color for the dot */
+            border-radius: 50%;
+            top: 40%; /* Adjust the vertical position of the dot */
+            right: -10px; /* Adjust the horizontal position of the dot */
+        }
+</style>
 <!-- <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
 </script> -->
@@ -50,7 +87,25 @@
 				<%@include file="topMenu.jsp"%>
 
 				<div class="right_col" role="main">
-					<div class="">
+					<h2>Bills</h2>
+					<div class="grid-4">
+						<div class="grid-box">
+							<div class="flex">
+								<div class="icon"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+								</div>
+								<div class="progress-round">
+									<div class="progress-bar" style="transform: rotate(180deg);"></div>
+									<div class="dot"></div>
+									75% <!-- Adjust the percentage value -->
+								</div>							</div>
+							<div class="text-area">Ready to Assign</div>
+							<div class="text-area">200-<span>42</span></div>
+							<div class="text-area">its grab from 139</div>
+						</div>
+					</div>
+
+
+					<!-- <div class="">
 
 
 
@@ -65,7 +120,7 @@
 
 						</div>
 
-					</div>
+					</div> -->
 
 				</div>
 			</div>
