@@ -29,42 +29,61 @@
 	.grid-4{
 		display: grid;
 		grid-template-columns: repeat(4,1fr);
+		gap: 1.5vw;
+		margin-inline: 1rem;
 	}
-        .progress-round {
-            position: relative;
-            width: 100px; /* Adjust the width of the progress bar */
-            height: 100px; /* Adjust the height of the progress bar */
-            border-radius: 50%;
-            background-color: #ccc; /* Background color of the progress bar */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: #333; /* Text color */
-        }
+	.grid-box{
+		padding: 25px;
+		border-radius: 25px;
+		box-sizing: revert;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		transition-duration: 500ms;
+		cursor: pointer;
+	}
 
-        .progress-bar {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            clip: rect(0, 50px, 100px, 0);
-            background-color: #3498db; /* Blue color for the progress */
-        }
+.percent{
+	width:75px;
+	height:75px;
+}
+.percent svg{
+	stroke-linecap:round;
+}
+.flex{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 6vw;
+}
+.icon i{
+	font-size: 35px;
+	transition-duration: 500ms;
+}.icon i:hover{
+	color:#A1C034 ;
+}
+.text-area:hover{
+	color:#A1C034 ;
 
-        .dot {
-            position: absolute;
-            width: 20px; /* Adjust the size of the dot */
-            height: 20px; /* Adjust the size of the dot */
-            background-color: #3498db; /* Blue color for the dot */
-            border-radius: 50%;
-            top: 40%; /* Adjust the vertical position of the dot */
-            right: -10px; /* Adjust the horizontal position of the dot */
-        }
+}
+.text-area{
+	transition-duration: 500ms;
+
+}
+.text-area b{
+	font-size: 25px;
+	color: gray;
+	font-weight: 600;
+}
+.text-area b span{
+	font-size: 20px;
+	font-weight: 500;
+}
+.grid-box:hover{
+	transform: scale(1.2);
+}
+.right_col h2{
+	margin-left: 2.5rem;
+}
 </style>
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
-</script> -->
 <link rel="shortcut icon" href="<c:url value="/resources/img/fav.png"/>">
 <%@include file="header.jsp"%>
 
@@ -94,16 +113,70 @@
 								<div class="icon"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
 								</div>
 								<div class="progress-round">
-									<div class="progress-bar" style="transform: rotate(180deg);"></div>
-									<div class="dot"></div>
-									75% <!-- Adjust the percentage value -->
-								</div>							</div>
+									<div class="percent">
+										<p style="display:none;">20%</p>
+								  </div>
+								</div>			
+							</div>
 							<div class="text-area">Ready to Assign</div>
-							<div class="text-area">200-<span>42</span></div>
+							<div class="text-area"><b>200-<span>42</span></b></div>
+							<div class="text-area">its grab from 139</div>
+						</div>	<div class="grid-box">
+							<div class="flex">
+								<div class="icon"><i class="fa fa-id-badge" aria-hidden="true"></i>
+
+								</div>
+								<div class="progress-round">
+									<div class="percent">
+										<p style="display:none;">40%</p>
+								  </div>
+								</div>			
+							</div>
+							<div class="text-area">Ready to Assign</div>
+							<div class="text-area"><b>200-<span>42</span></b></div>
+							<div class="text-area">its grab from 139</div>
+						</div>	<div class="grid-box">
+							<div class="flex">
+								<div class="icon"><i class="fa fa-calendar-times-o" aria-hidden="true"></i>
+
+								</div>
+								<div class="progress-round">
+									<div class="percent">
+										<p style="display:none;">60%</p>
+								  </div>
+								</div>			
+							</div>
+							<div class="text-area">Ready to Assign</div>
+							<div class="text-area"><b>200-<span>42</span></b></div>
+							<div class="text-area">its grab from 139</div>
+						</div>	<div class="grid-box">
+							<div class="flex">
+								<div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i>
+
+								</div>
+								<div class="progress-round">
+									<div class="percent">
+										<p style="display:none;">80%</p>
+								  </div>
+								</div>			
+							</div>
+							<div class="text-area">Ready to Assign</div>
+							<div class="text-area"><b>200-<span>42</span></b></div>
 							<div class="text-area">its grab from 139</div>
 						</div>
 					</div>
-
+					<div class="invoices">
+						<div class="amount-owned">
+							<div class="menu"></div>
+							<div class="value-meter"></div>
+							<div class="icon"></div>
+							<div class="amount-own">
+								<p>Amount Owned</p>
+								<p class="value">$<span>933,879.45</span></p>
+								<p>$125,789.89</p>
+							</div>
+						</div>
+					</div>
 
 					<!-- <div class="">
 
@@ -132,5 +205,35 @@
 
 		<%@include file="footer.jsp"%>
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js'></script>
+<script type='text/javascript'>
+  !function(a){a.fn.percentageLoader=function(b){this.each(function(){function q(){p.customAttributes.arc=function(a,b,c){var h,d=360/b*a,e=(90-d)*Math.PI/180,f=j+c*Math.cos(e),g=k-c*Math.sin(e);return h=b==a?[["M",j,k-c],["A",c,c,0,1,1,j-.01,k-c]]:[["M",j,k-c],["A",c,c,0,+(d>180),1,f,g]],{path:h}},p.path().attr({arc:[100,100,l],"stroke-width":d.strokeWidth,stroke:d.bgColor}),e&&(m=p.path().attr({arc:[.01,100,l],"stroke-width":d.strokeWidth,stroke:d.ringColor,cursor:"pointer"}),r(e,100,l,m,2)),n=p.text(j,k,"0%").attr({font:d.fontWeight+" "+d.fontSize+" Arial",fill:d.textColor})}function r(a,b,c,d){f?d.animate({arc:[a,b,c]},900,">"):a&&a!=b?d.animate({arc:[a,b,c]},750,"elastic"):(a=b,d.animate({arc:[a,b,c]},750,"bounce",function(){d.attr({arc:[0,b,c]})}))}var c=a(this),d=a.extend({},a.fn.percentageLoader.defaultConfig,b),e=parseInt(c.children(d.valElement).text()),f=!0,h=parseInt(c.css("width")),i=parseInt(c.css("height")),j=h/2,k=i/2,l=j-d.strokeWidth/2,m=null,n=null,p=Raphael(this,h,i);q();
+
+    // Animate the percentage numbers
+    var targetPercentage = e;
+    var currentPercentage = 0;
+    var interval = setInterval(function() {
+      if (currentPercentage <= targetPercentage) {
+        n.attr('text', currentPercentage + '%');
+        currentPercentage++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 20); // Adjust the interval to control the animation speed
+  })},a.fn.percentageLoader.defaultConfig={valElement:"p",strokeWidth:20,bgColor:"#d9d9d9",ringColor:"#d53f3f",textColor:"#9a9a9a",fontSize:"12px",fontWeight:"normal"}}(jQuery);
+</script>
+
+<script type="text/javascript">		
+  $('.percent').percentageLoader({
+    bgColor: 'rgba(0,0,0,.2)',
+    ringColor: '#A1C034',
+    textColor: 'black',
+    fontSize: '20px',
+    strokeWidth: 10
+  });
+</script>
+
+
 
 </html>

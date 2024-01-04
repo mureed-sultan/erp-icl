@@ -14,13 +14,13 @@
 
 		}
 		.flex-center img{
-			width: 50px;
+			width: 75px;
 			margin-inline:auto;
 		}
 		.flex-center ul{
 			background-color: #A1C034;
 			padding: 20px 0px;
-			border-radius: 0px 50px 50px 0;
+			border-radius: 0px 25px 25px 0;
 			overflow: hidden;
 		}
   </style>
@@ -64,7 +64,7 @@
                 </ul> -->
               
               	<!-- tiny only nav-->
-				<div class="copyright">DataSphere Global</div>
+				<div class="copyright">Help</div>
               <!-- <ul class="nav visible-xs" id="xs-menu">
               		<li><a href="#featured" class="text-center"><i class=" fa fa-university"></i></a></li>
                   	<li><a href="#featured" class="text-center"><i class="fa fa-building-o"></i></a></li>

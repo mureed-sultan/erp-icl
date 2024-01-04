@@ -21,7 +21,7 @@
 		border-bottom: 1px solid silver;
 	}
 </style>
-<div class="column col-sm-12 col-xs-11" id="main">
+<div class="column col-sm-12 col-xs-12" id="main">
                 
                 <!-- top nav -->
 <div class="navbar navbar-blue navbar-static-top">
