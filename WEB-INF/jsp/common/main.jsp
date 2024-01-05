@@ -31,6 +31,9 @@
 		grid-template-columns: repeat(4,1fr);
 		gap: 1.5vw;
 		margin-inline: 1rem;
+		transform: scale(0);
+		animation: popupmain 1000ms forwards ease-in-out;
+
 	}
 	.grid-box{
 		padding: 25px;
@@ -39,6 +42,9 @@
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 		transition-duration: 500ms;
 		cursor: pointer;
+	}
+	.d-flex{
+		display: flex;
 	}
 
 .percent{
@@ -82,6 +88,103 @@
 }
 .right_col h2{
 	margin-left: 2.5rem;
+}
+.invoices{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 1fr 1fr;
+	margin-top: 3rem;
+	background-color: #F3F3FD;
+	margin-left: 1rem;
+	transform: scale(0);
+		animation: popupmain 1000ms forwards ease-in-out;
+}
+.amount-owned{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-image: linear-gradient(#A3C133 0%, #535356 100%);
+	border-radius: 20px;
+	grid-row: 1/span 2;
+}
+.value-meter img{
+	width: 90%;
+	margin: auto;
+	display: flex;
+	margin-top: 1rem;
+	border-radius: 10px;
+	margin-bottom: 2rem;
+}
+.amount-owned .icon i{
+	font-size: 40px;
+	color: white;
+}
+.amount-owned .amount-own p:nth-child(1){
+	font-size: 15px;	
+	font-weight: 200;
+	margin-bottom: 10px;
+	text-align: center;
+	color: white;
+
+}.amount-owned .amount-own p:nth-child(2){
+	font-size: 35px;	
+	font-weight: 700;
+	margin: 20px 0 20px 0;
+	text-align: center;
+	color: white;
+
+}.amount-owned .amount-own p:nth-child(3){
+	text-align: center;
+	color: white;
+}
+.info-section{
+	background-color: white;
+	margin: 1rem 2rem 1rem 2rem;
+	border-radius: 20px;
+	padding: 10px 25px;
+}
+.info-section h3{
+	font-weight: 700;
+	font-size: 35px;
+}
+.justify-center{
+	justify-content: space-between;
+	align-items: center;
+	width: 85%;
+}
+.justify-center h2, .justify-center p{
+	margin: 0;
+}
+.justify-center .success{
+	background-color: limegreen;
+	padding: .4rem;
+}.justify-center .warning{
+	background-color: yellowgreen;
+	padding: .4rem;
+}
+.grid-row2{
+	grid-row: 2;
+	grid-column: 2;
+}
+.graph-section{
+	grid-row:1/span 2;
+	grid-column: 3/span 2;
+	background-color: white;
+	border-radius: 10px;
+	margin: 1rem;
+}
+.graph-section img{
+	width: 100%;
+}
+@keyframes popupmain {
+	0%{
+		transform: scale(0);
+	}
+	100%{
+		transform: scale(1);
+
+	}
 }
 </style>
 <link rel="shortcut icon" href="<c:url value="/resources/img/fav.png"/>">
@@ -168,16 +271,35 @@
 					<div class="invoices">
 						<div class="amount-owned">
 							<div class="menu"></div>
-							<div class="value-meter"></div>
-							<div class="icon"></div>
+							<div class="value-meter">
+								<img src="https://i.stack.imgur.com/vEyPR.png" alt="">
+							</div>
+							<div class="icon"><i class="fa fa-line-chart" aria-hidden="true"></i>
+							</div>
 							<div class="amount-own">
 								<p>Amount Owned</p>
 								<p class="value">$<span>933,879.45</span></p>
 								<p>$125,789.89</p>
 							</div>
 						</div>
+						<div class="info-section">
+							<h3>New Client</h3>
+							<div class="d-flex justify-center">
+								<h2>52</h2>
+								<p class="success">+ 18.7 %</p>
+							</div>
+						</div>		
+						<div class="info-section grid-row2">
+							<h3>New Client</h3>
+							<div class="d-flex justify-center">
+								<h2>52</h2>
+								<p class="success">+ 18.7 %</p>
+							</div>
+						</div>
+						<div class="graph-section"><img src="https://canvasjs.com/wp-content/uploads/2021/03/multi-series-line-chart.png" alt=""></div>
 					</div>
-
+					<div class="history-section"></div>
+					
 					<!-- <div class="">
 
 

@@ -251,6 +251,18 @@ hr {
 	padding: 0px;
 	padding-top: 15px;
 	padding-right: 15px;
+	transform: translateX(-100vw);
+	animation: slideright 1000ms forwards ease-in-out;
+}
+@keyframes slideright {
+	0%{
+		transform: translateX(-100vw);
+
+	}
+	100%{
+		transform: translateX(00vw);
+
+	}
 }
 
 #sidebar, #sidebar a, #sidebar-footer a {

@@ -20,11 +20,25 @@
 		background-color: white;
 		border-bottom: 1px solid silver;
 	}
+	#topnav{
+	transform: translateY(-100vh);
+	animation: slidetop 1000ms forwards ease-in-out;
+}
+@keyframes slidetop {
+	0%{
+		transform: translateY(-100vh);
+
+	}
+	100%{
+		transform: translateY(00vh);
+
+	}
+}
 </style>
 <div class="column col-sm-12 col-xs-12" id="main">
                 
                 <!-- top nav -->
-<div class="navbar navbar-blue navbar-static-top">
+<div class="navbar navbar-blue navbar-static-top" id="topnav">
 	<div class="col-md-6 col-sm-6">
 		<div class="navbar-header">
 			<a href="ICL" class="navbar-brand logo">Dashboard</a>
